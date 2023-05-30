@@ -22,14 +22,18 @@ const devMiddleware = require("webpack-dev-middleware")(compiler, {
 const hotMiddleware = require("webpack-hot-middleware")(compiler);
 
 // Компилируем SASS при каждом сохранении
-const sassWatcher = spawn("npx", ["sass", "-w", "src/style/:public/"]);
+const sassWatcher = spawn('npm.cmd', ['run', 'style']);
 
-sassWatcher.stdout.on("data", (data) => {
-  console.log(`SASS: ${data}`);
+sassWatcher.stdout.on('data', (data) => {
+  console.log(`stdout: ${data}`);
 });
 
-sassWatcher.stderr.on("data", (data) => {
-  console.error(`SASS error: ${data}`);
+sassWatcher.stderr.on('data', (data) => {
+  console.error(`stderr: ${data}`);
+});
+
+sassWatcher.on('close', (code) => {
+  console.log(`child process exited with code ${code}`);
 });
 
 // Запускаем сервер, проксируя запросы к стилям в директории src

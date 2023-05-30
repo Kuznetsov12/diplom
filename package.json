@@ -4,6 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
+    "style": "sass -w src/style/:public/",
     "start": "node server.js"
   },
   "dependencies": {
