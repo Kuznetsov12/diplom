@@ -22,7 +22,7 @@ const devMiddleware = require("webpack-dev-middleware")(compiler, {
 const hotMiddleware = require("webpack-hot-middleware")(compiler);
 
 // Компилируем SASS при каждом сохранении
-const sassWatcher = spawn('npm.cmd', ['run', 'style']);
+const sassWatcher = spawn('yarn', [ 'style']);
 
 sassWatcher.stdout.on('data', (data) => {
   console.log(`stdout: ${data}`);
